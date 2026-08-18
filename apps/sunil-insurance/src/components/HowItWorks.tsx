@@ -1,26 +1,36 @@
 import React from 'react';
-import { MessageSquare, Sliders, ShieldCheck } from 'lucide-react';
-import { getWhatsAppLink } from '../utils/whatsapp';
+import { MessageSquare, Sliders, ShieldCheck, HeartHandshake } from 'lucide-react';
+import type { EnquiryContext } from '../utils/whatsapp';
 
-export const HowItWorks: React.FC = () => {
+interface HowItWorksProps {
+  onAction: (ctx: EnquiryContext) => void;
+}
+
+export const HowItWorks: React.FC<HowItWorksProps> = ({ onAction }) => {
   const steps = [
     {
       number: '01',
       icon: MessageSquare,
-      title: 'Tell us what you need',
-      description: 'Share whether you need protection for an individual, family member, or business team.',
+      title: 'Tell Sunil What You Need',
+      description: 'Health, motor, personal or business.',
     },
     {
       number: '02',
       icon: Sliders,
-      title: 'Discuss suitable options',
-      description: 'Understand key coverage parameters, terms, and compare suitable alternatives transparently.',
+      title: 'Discuss Your Options',
+      description: 'Understand suitable coverage and relevant considerations.',
     },
     {
       number: '03',
       icon: ShieldCheck,
-      title: 'Choose your protection',
-      description: 'Proceed with the appropriate insurance option with full confidence and ongoing guidance.',
+      title: 'Choose Your Cover',
+      description: 'Proceed with the appropriate policy.',
+    },
+    {
+      number: '04',
+      icon: HeartHandshake,
+      title: 'Stay Connected',
+      description: 'Maintain a human point of contact for renewals and assistance.',
     },
   ];
 
@@ -29,7 +39,7 @@ export const HowItWorks: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-400">
-            Simple 3-Step Process
+            Simple Customer Journey
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
             How It Works
@@ -39,7 +49,7 @@ export const HowItWorks: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 relative">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           {steps.map((step, idx) => {
             const IconComp = step.icon;
             return (
@@ -64,15 +74,13 @@ export const HowItWorks: React.FC = () => {
         </div>
 
         <div className="text-center mt-10">
-          <a
-            href={getWhatsAppLink('general')}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-whatsapp-500 hover:bg-whatsapp-600 text-white text-sm font-bold px-6 py-3 rounded-xl shadow-md transition-colors"
+          <button
+            onClick={() => onAction('general')}
+            className="inline-flex items-center gap-2 bg-whatsapp-500 hover:bg-whatsapp-600 text-white text-sm font-bold px-6 py-3.5 rounded-xl shadow-md transition-colors cursor-pointer"
           >
             <MessageSquare className="w-4 h-4" />
             <span>Start Step 1 on WhatsApp</span>
-          </a>
+          </button>
         </div>
       </div>
     </section>

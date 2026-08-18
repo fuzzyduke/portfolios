@@ -8,13 +8,13 @@ All content across the Sunil Insurance microsite is tracked below with explicit 
 
 | Section | Copy / Element | Status Tag | Notes |
 | :--- | :--- | :--- | :--- |
-| **Advisor Name** | Sunil | `VERIFIED` | Confirmed name |
-| **Tagline** | Insurance made simpler. | `VERIFIED` | Approved baseline positioning |
-| **Sub-tagline** | Personal insurance guidance for individuals, families, and businesses. | `VERIFIED` | Approved supporting copy |
-| **Health Insurance** | Individual, Family, Senior Citizen, Corporate Group | `VERIFIED` | Confirmed primary category |
-| **Motor Insurance** | Comprehensive, Third-Party, Commercial & Fleet | `PROVISIONAL` | **Awaiting confirmation from Sunil** |
-| **WhatsApp Number** | `910000000000` | `PLACEHOLDER` | Configurable in `src/config/contact.ts` |
-| **Display Phone** | `+91 00000 00000` | `PLACEHOLDER` | Configurable in `src/config/contact.ts` |
+| **Advisor Name** | Sunil | `SUNIL VERIFIED` | Confirmed name |
+| **Tagline** | Insurance made simpler. | `PROTOTYPE ASSUMPTION` | Approved baseline positioning for V1 |
+| **Sub-tagline** | Health & Motor Insurance for individuals, families and businesses. | `PROTOTYPE ASSUMPTION` | Approved supporting copy for V1 |
+| **Health Insurance** | Individual, Family, Senior Citizen, Corporate Group | `PROTOTYPE ASSUMPTION` | Standard 4-product offering |
+| **Motor Insurance** | Comprehensive Car, Third-Party, Two-Wheeler, Commercial & Fleet | `PROTOTYPE ASSUMPTION` | Assumed prototype business model |
+| **WhatsApp Number** | `910000000000` | `PLACEHOLDER` | Configurable in `src/config/contact.ts` (Demo Modal active) |
+| **Display Phone** | `+91 (Sunil's Mobile)` | `PLACEHOLDER` | Configurable in `src/config/contact.ts` |
 | **Email Address** | `sunil@example.com` | `PLACEHOLDER` | Configurable in `src/config/contact.ts` |
 | **Location / City** | `India` | `PLACEHOLDER` | Configurable in `src/config/contact.ts` |
 | **License / Reg No** | N/A | `PLACEHOLDER` | To be added under Regulatory Note when available |

@@ -1,27 +1,27 @@
 import React from 'react';
-import { Compass, GitCompare, CheckCircle, LifeBuoy } from 'lucide-react';
+import { Compass, Compass as ExploreIcon, CheckCircle, LifeBuoy } from 'lucide-react';
 
 export const WhyWorkWithSunil: React.FC = () => {
   const pillars = [
     {
       icon: Compass,
       title: 'Understand',
-      description: 'Help customers understand what they actually need before jumping into policy details or premiums.',
+      description: 'Start by understanding what protection the customer actually needs.',
     },
     {
-      icon: GitCompare,
-      title: 'Compare',
-      description: 'Discuss suitable options objectively rather than blindly selecting or recommending a single policy.',
+      icon: ExploreIcon,
+      title: 'Explore',
+      description: 'Discuss suitable insurance options and important differences.',
     },
     {
       icon: CheckCircle,
       title: 'Choose',
-      description: 'Help customers make an informed, confident decision tailored to their financial budget.',
+      description: 'Help the customer make an informed selection.',
     },
     {
       icon: LifeBuoy,
       title: 'Stay Supported',
-      description: 'Provide a reliable human point of contact for ongoing policy updates, renewals, and general insurance assistance.',
+      description: 'Remain a point of contact for renewals and insurance-related assistance.',
     },
   ];
 
@@ -33,7 +33,7 @@ export const WhyWorkWithSunil: React.FC = () => {
             Why Work With Sunil?
           </h2>
           <p className="text-slate-600 mt-2 text-sm sm:text-base">
-            The value of a dedicated human insurance advisor over automated comparison algorithms.
+            The value of having a dedicated human point of contact for your insurance needs.
           </p>
         </div>
 
@@ -43,9 +43,9 @@ export const WhyWorkWithSunil: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 hover:shadow-md transition-shadow relative"
+                className="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 hover:shadow-xs transition-shadow relative"
               >
-                <div className="w-12 h-12 rounded-xl bg-brand-700 text-white flex items-center justify-center mb-5 shadow-xs">
+                <div className="w-12 h-12 rounded-xl bg-brand-700 text-white flex items-center justify-center mb-5 shadow-2xs">
                   <IconComponent className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">

@@ -9,23 +9,32 @@ import { BusinessCTA } from './components/BusinessCTA';
 import { ContactSection } from './components/ContactSection';
 import { StickyMobileCTA } from './components/StickyMobileCTA';
 import { Footer } from './components/Footer';
+import { WhatsAppModal, useWhatsAppAction } from './components/WhatsAppModal';
 
 export function App() {
+  const { triggerWhatsApp, modalContext, closeModal } = useWhatsAppAction();
+
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-brand-100 selection:text-brand-900">
-      <Header />
+      <Header onTalkToSunil={triggerWhatsApp} />
       <main>
-        <Hero />
-        <CustomerType />
-        <HealthSection />
-        <MotorSection />
+        <Hero onTalkToSunil={triggerWhatsApp} />
+        <CustomerType onSelectJourney={triggerWhatsApp} />
+        <HealthSection onAction={triggerWhatsApp} />
+        <MotorSection onAction={triggerWhatsApp} />
         <WhyWorkWithSunil />
-        <HowItWorks />
-        <BusinessCTA />
-        <ContactSection />
+        <HowItWorks onAction={triggerWhatsApp} />
+        <BusinessCTA onAction={triggerWhatsApp} />
+        <ContactSection onAction={triggerWhatsApp} />
       </main>
       <Footer />
-      <StickyMobileCTA />
+      <StickyMobileCTA onAction={triggerWhatsApp} />
+
+      <WhatsAppModal
+        isOpen={modalContext !== null}
+        onClose={closeModal}
+        context={modalContext || 'general'}
+      />
     </div>
   );
 }

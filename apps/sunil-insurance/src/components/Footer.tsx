@@ -8,50 +8,53 @@ export const Footer: React.FC = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 pb-8 border-b border-slate-800">
           <div>
             <div className="font-bold text-white text-base mb-2">
-              {CONTACT_CONFIG.advisorName} Insurance Advisor
+              {CONTACT_CONFIG.advisorName} Insurance
             </div>
             <p className="text-slate-400 text-xs">
-              Personal insurance guidance for individuals, families, and businesses.
+              Personal insurance guidance for health and motor insurance across individuals, families, and businesses.
             </p>
           </div>
 
           <div>
             <div className="font-bold text-white text-xs uppercase tracking-wider mb-2">
-              Service Categories
+              Health Insurance
             </div>
-            <ul className="space-y-1 text-xs">
-              <li>Individual & Family Health</li>
+            <ul className="space-y-1 text-xs text-slate-300">
+              <li>Individual Health Insurance</li>
+              <li>Family Health Insurance</li>
               <li>Senior Citizen Health</li>
-              <li>Corporate Group Mediclaim</li>
-              <li>Motor & Fleet Insurance (Provisional)</li>
+              <li>Corporate Group Health</li>
             </ul>
           </div>
 
           <div>
             <div className="font-bold text-white text-xs uppercase tracking-wider mb-2">
-              Contact Details
+              Motor Insurance
             </div>
-            <p className="text-xs">Phone: {CONTACT_CONFIG.displayPhone}</p>
-            <p className="text-xs">Email: {CONTACT_CONFIG.email}</p>
-            <p className="text-xs">Location: {CONTACT_CONFIG.location}</p>
+            <ul className="space-y-1 text-xs text-slate-300">
+              <li>Comprehensive Car Insurance</li>
+              <li>Third-Party Motor Insurance</li>
+              <li>Two-Wheeler Insurance</li>
+              <li>Commercial & Fleet Cover</li>
+            </ul>
           </div>
 
           <div>
             <div className="font-bold text-white text-xs uppercase tracking-wider mb-2">
-              Regulatory Note
+              Advisor Guidance
             </div>
             <p className="text-xs text-slate-400">
-              Regulatory and license identification details will be displayed here upon confirmation of advisor registration.
+              Direct personal support for understanding requirements, policy selection, and ongoing renewal assistance.
             </p>
           </div>
         </div>
 
-        {/* Disclaimer */}
+        {/* Prototype Disclaimer */}
         <div className="text-[11px] text-slate-500 max-w-4xl">
-          <p className="mb-2 font-medium text-slate-400">Important Disclaimer:</p>
+          <p className="mb-1.5 font-semibold text-slate-400">Prototype Disclaimer:</p>
           <p>{CONTACT_CONFIG.disclaimer}</p>
           <p className="mt-4 text-slate-600">
-            © {new Date().getFullYear()} {CONTACT_CONFIG.advisorName} Insurance. All rights reserved. Designed for zero-cost micro-app deployment.
+            © {new Date().getFullYear()} {CONTACT_CONFIG.advisorName} Insurance. All rights reserved. Prototype edition.
           </p>
         </div>
       </div>

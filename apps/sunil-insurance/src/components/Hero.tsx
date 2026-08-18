@@ -1,29 +1,38 @@
-import { MessageSquare, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
+import React from 'react';
+import { MessageSquare, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { CONTACT_CONFIG } from '../config/contact';
-import { getWhatsAppLink } from '../utils/whatsapp';
+import type { EnquiryContext } from '../utils/whatsapp';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  onTalkToSunil: (ctx?: EnquiryContext) => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onTalkToSunil }) => {
   return (
     <section className="relative pt-8 pb-14 md:pt-16 md:pb-20 bg-gradient-to-b from-slate-900 via-slate-900 to-brand-900 text-white overflow-hidden">
-      {/* Subtle Background Elements */}
+      {/* Background pattern */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-brand-800/80 border border-brand-600/40 text-brand-100 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-brand-800/80 border border-brand-600/40 text-brand-100 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 shadow-2xs">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Human Insurance Advisor • Personal Assistance</span>
+            <span>Personal Insurance Advisor</span>
           </div>
 
-          {/* Primary Heading */}
+          {/* Primary Message */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
             {CONTACT_CONFIG.tagline}
           </h1>
 
-          {/* Supporting Text */}
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-6 max-w-2xl mx-auto">
-            {CONTACT_CONFIG.subTagline} Helping you navigate options without pressure or complex jargon.
+          {/* Supporting Copy */}
+          <p className="text-lg sm:text-xl text-brand-100 font-semibold mb-3">
+            {CONTACT_CONFIG.subTagline}
+          </p>
+
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed mb-6 max-w-2xl mx-auto">
+            Sunil helps customers understand their requirements, explore appropriate insurance options and find suitable coverage without unnecessary complexity.
           </p>
 
           {/* Positioning Quote */}
@@ -33,16 +42,14 @@ export const Hero: React.FC = () => {
 
           {/* Primary & Secondary CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mt-8">
-            <a
-              href={getWhatsAppLink('general')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-whatsapp-500 hover:bg-whatsapp-600 text-white text-base font-bold px-6 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5"
+            <button
+              onClick={() => onTalkToSunil('general')}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-whatsapp-500 hover:bg-whatsapp-600 text-white text-base font-bold px-6 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer"
             >
               <MessageSquare className="w-5 h-5" />
               <span>Talk to Sunil</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
 
             <a
               href="#categories"
@@ -56,15 +63,15 @@ export const Hero: React.FC = () => {
           <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-12 pt-8 border-t border-slate-800/80 text-left text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Tailored Guidance</span>
+              <span>Personal Guidance</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Unbiased Options</span>
+              <span>Clear Options</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Ongoing Renewal Support</span>
+              <span>Renewal Support</span>
             </div>
           </div>
 

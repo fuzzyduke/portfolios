@@ -1,8 +1,12 @@
 import React from 'react';
-import { HeartPulse, Heart, Shield, Users, ArrowUpRight } from 'lucide-react';
-import { getWhatsAppLink } from '../utils/whatsapp';
+import { HeartPulse, Heart, Shield, Users, ArrowUpRight, UserCheck } from 'lucide-react';
+import type { EnquiryContext } from '../utils/whatsapp';
 
-export const HealthSection: React.FC = () => {
+interface HealthSectionProps {
+  onAction: (ctx: EnquiryContext) => void;
+}
+
+export const HealthSection: React.FC<HealthSectionProps> = ({ onAction }) => {
   return (
     <section id="categories" className="py-14 md:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4">
@@ -11,98 +15,111 @@ export const HealthSection: React.FC = () => {
             <HeartPulse className="w-5 h-5" />
           </div>
           <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-            Core Service Category
+            Healthcare & Medical Coverage
           </span>
         </div>
 
         <div className="mb-10">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Health Insurance Guidance
+            Health Insurance
           </h2>
           <p className="text-slate-600 mt-2 text-sm sm:text-base max-w-2xl">
-            Protecting your financial security against medical emergencies with thoughtful, customized health coverage options.
+            Protecting your financial security against healthcare expenses with thoughtful health coverage options.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* 1. Individual & Family */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* 1. Individual Health */}
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between hover:border-brand-300 transition-colors">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-brand-700 flex items-center justify-center mb-4 shadow-xs">
+              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-brand-700 flex items-center justify-center mb-4 shadow-2xs">
                 <Heart className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">
-                Individual & Family Health
+                Individual Health Insurance
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Hospitalisation protection for individuals, couples and families, with options designed around different coverage needs and budgets.
+                Medical coverage designed around an individual's healthcare and hospitalisation needs.
               </p>
             </div>
             
-            <a
-              href={getWhatsAppLink('health_individual')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-900 pt-3 border-t border-slate-200"
+            <button
+              onClick={() => onAction('health_individual')}
+              className="inline-flex items-center justify-between w-full text-xs font-bold text-brand-700 hover:text-brand-900 pt-3 border-t border-slate-200 cursor-pointer"
+            >
+              <span>Discuss Individual Health</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* 2. Family Health */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between hover:border-brand-300 transition-colors">
+            <div>
+              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-brand-700 flex items-center justify-center mb-4 shadow-2xs">
+                <UserCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">
+                Family Health Insurance
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                Health protection designed to cover families under an appropriate shared or family-oriented policy structure.
+              </p>
+            </div>
+
+            <button
+              onClick={() => onAction('health_family')}
+              className="inline-flex items-center justify-between w-full text-xs font-bold text-brand-700 hover:text-brand-900 pt-3 border-t border-slate-200 cursor-pointer"
             >
               <span>Discuss Family Health</span>
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
 
-          {/* 2. Senior Citizen */}
+          {/* 3. Senior Citizen Health */}
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between hover:border-brand-300 transition-colors">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-brand-700 flex items-center justify-center mb-4 shadow-xs">
+              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-brand-700 flex items-center justify-center mb-4 shadow-2xs">
                 <Shield className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">
                 Senior Citizen Health
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Health protection designed around the requirements of older family members, focusing on pre-existing condition management and comprehensive care.
+                Health insurance options focused on the requirements of parents and senior family members.
               </p>
             </div>
 
-            <a
-              href={getWhatsAppLink('health_senior')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-900 pt-3 border-t border-slate-200"
+            <button
+              onClick={() => onAction('health_senior')}
+              className="inline-flex items-center justify-between w-full text-xs font-bold text-brand-700 hover:text-brand-900 pt-3 border-t border-slate-200 cursor-pointer"
             >
-              <span>Discuss Senior Citizen Plans</span>
+              <span>Discuss Senior Health</span>
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
 
-          {/* 3. Corporate Group Health */}
+          {/* 4. Corporate Group Health */}
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between hover:border-brand-300 transition-colors">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-brand-700 flex items-center justify-center mb-4 shadow-xs">
+              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-brand-700 flex items-center justify-center mb-4 shadow-2xs">
                 <Users className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">
                 Corporate Group Health
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                Employee medical coverage options for businesses and teams, offering customized sum insured tiers and simplified onboarding.
+                Employee medical insurance options for companies and teams.
               </p>
             </div>
 
-            <a
-              href={getWhatsAppLink('health_corporate')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-900 pt-3 border-t border-slate-200"
+            <button
+              onClick={() => onAction('health_corporate')}
+              className="inline-flex items-center justify-between w-full text-xs font-bold text-brand-700 hover:text-brand-900 pt-3 border-t border-slate-200 cursor-pointer"
             >
-              <span>Discuss Corporate Group Mediclaim</span>
+              <span>Discuss Employee Health</span>
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
-        </div>
-
-        <div className="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-500">
-          * Product category examples. Specific policy terms, exclusions, waiting periods, and insurer approval depend on the final chosen policy documentation.
         </div>
       </div>
     </section>
