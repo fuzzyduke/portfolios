@@ -1,0 +1,7 @@
+# .gitignore for portfolios monorepo
+node_modules
+dist
+.cache
+.DS_Store
+*.local
+*.log

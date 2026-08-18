@@ -1,0 +1,22 @@
+{
+  "name": "portfolios-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Monorepo for client micro-sites and portfolio applications",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "templates/*"
+  ],
+  "scripts": {
+    "dev:sunil": "npm run dev --workspace=apps/sunil-insurance",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "optionalDependencies": {
+    "@rolldown/binding-win32-x64-msvc": "^1.2.4"
+  }
+}
