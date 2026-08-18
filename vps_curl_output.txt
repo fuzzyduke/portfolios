@@ -2,22 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0f172a" />
-    
-    <title>Sunil Insurance | Health & Motor Insurance</title>
-    <meta name="description" content="Personal guidance for health and motor insurance for individuals, families and businesses." />
-    
-    <!-- OpenGraph Metadata for WhatsApp/Social Sharing Preview -->
-    <meta property="og:title" content="Sunil Insurance — Health & Motor Insurance" />
-    <meta property="og:description" content="Personal guidance for health and motor insurance for individuals, families and businesses." />
+    <meta name="theme-color" content="#F6F3EE" />
+
+    <title>Luma Healing Space | Reiki & Holistic Wellbeing</title>
+    <meta name="description" content="A gentle space for Reiki, energy healing and restorative wellbeing. Explore one-to-one and distance sessions with Reshma." />
+
+    <!-- OpenGraph Metadata for WhatsApp / Social Preview -->
+    <meta property="og:title" content="Luma Healing Space — Reiki & Holistic Wellbeing" />
+    <meta property="og:description" content="A gentle space for Reiki, energy healing and restorative wellbeing. Explore one-to-one and distance sessions with Reshma." />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Sunil Insurance Advisor" />
-    <script type="module" crossorigin src="/assets/index-CSxsT2wZ.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dbw2rYfl.css">
+    <meta property="og:site_name" content="Luma Healing Space" />
+    <script type="module" crossorigin src="/assets/index-CodUhber.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CVBV4nfs.css">
   </head>
-  <body className="bg-white text-slate-900">
+  <body className="bg-luma-cream-100 text-luma-lavender-900">
     <div id="root"></div>
   </body>
 </html>
