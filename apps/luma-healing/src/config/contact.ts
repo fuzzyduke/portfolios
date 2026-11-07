@@ -24,7 +24,7 @@ export interface ContactConfig {
 
 export const CONTACT_CONFIG: ContactConfig = {
   practitionerName: "Reshma",
-  brandName: "Luma Healing Space",
+  brandName: "Soulsearch Healing Space",
   tagline: "A space to pause, listen and reconnect.",
   subTagline: "A journey back to yourself.",
   heroHeadline: "A journey back to yourself.",
@@ -34,5 +34,5 @@ export const CONTACT_CONFIG: ContactConfig = {
   email: "reshma@lumahealing.space",
   location: "Restorative Practice",
   isDemoNumber: true, // Enables prototype interactive modal
-  disclaimer: "Luma Healing Space offers complementary wellbeing practices. Sessions are not a substitute for medical diagnosis, psychiatric care, or professional healthcare. Individual experiences may vary. Brand identity, services, credentials, and pricing are pending Reshma's review.",
+  disclaimer: "Soulsearch Healing Space offers complementary wellbeing practices. Sessions are not a substitute for medical diagnosis, psychiatric care, or professional healthcare. Individual experiences may vary. Brand identity, services, credentials, and pricing are pending Reshma's review.",
 };

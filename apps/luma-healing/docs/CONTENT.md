@@ -17,7 +17,7 @@ All content across the Luma Healing Space website is tracked below with explicit
 
 | Section / Element | V2 Copy / Experience | Status Tag | Source Provenance & Notes |
 | :--- | :--- | :--- | :--- |
-| **Brand Identity** | Luma Healing Space | `PROPOSED` | Existing verified name in repo; relationship with `@soulsearchbyreshma` pending Reshma's decision. |
+| **Brand Identity** | Soulsearch Healing Space | `OWNER_DIRECTED` | Eddy directed brand name update from "Luma" to "Soulsearch" (Harness #579); permanent relationship with `@soulsearchbyreshma` pending Reshma's formal signoff. |
 | **Practitioner Name** | Reshma | `RESHMA_VERIFIED` | Confirmed practitioner name. |
 | **Hero Tagline** | "A space to pause, listen and reconnect." | `PROPOSED` | Adapted from Instagram carousel themes. |
 | **Hero Headline** | "A journey back to yourself." | `PUBLICLY_MENTIONED` | Verbatim profile tagline from `@soulsearchbyreshma`. |
