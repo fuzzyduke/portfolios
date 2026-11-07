@@ -3,55 +3,37 @@ import { CONTACT_CONFIG } from '../config/contact';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-luma-cosmic text-luma-lavender-300/80 py-12 pb-24 sm:pb-12 border-t border-luma-lavender-900/60 text-xs leading-relaxed">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 pb-8 border-b border-luma-lavender-900/60">
+    <footer className="bg-[#f8f6f1] text-[#716a73] py-12 pb-24 sm:pb-12 border-t border-[#e9e3e6] text-xs leading-relaxed font-sans">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#e5dde2]">
           <div>
-            <div className="font-serif text-lg font-semibold text-white mb-2">
+            <strong className="font-serif text-xl sm:text-2xl font-normal text-luma-lavender-900 block mb-1">
               {CONTACT_CONFIG.brandName}
-            </div>
-            <p className="text-luma-lavender-300/70 text-xs font-normal">
-              {CONTACT_CONFIG.tagline}
+            </strong>
+            <p className="text-xs text-luma-lavender-700">
+              V2 Journey-First Design Study · Not yet a public booking experience
             </p>
           </div>
 
-          <div>
-            <div className="font-serif text-sm font-semibold text-white mb-2">
-              Restorative Offerings
-            </div>
-            <ul className="space-y-1 text-xs text-luma-lavender-200/80">
-              <li>Reiki Healing Sessions</li>
-              <li>Distance Reiki</li>
-              <li>Energy Balancing</li>
-              <li>Guided Relaxation & Meditation</li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="font-serif text-sm font-semibold text-white mb-2">
-              Practitioner
-            </div>
-            <p className="text-xs text-luma-lavender-200/80">Reshma</p>
-            <p className="text-xs text-luma-lavender-200/80">{CONTACT_CONFIG.email}</p>
-            <p className="text-xs text-luma-lavender-200/80">{CONTACT_CONFIG.location}</p>
-          </div>
-
-          <div>
-            <div className="font-serif text-sm font-semibold text-white mb-2">
-              Gentle Space
-            </div>
-            <p className="text-xs text-luma-lavender-300/70">
-              Dedicated to relaxation, personal reflection, and grounded restorative energy practices.
-            </p>
-          </div>
+          <a
+            href="#home"
+            className="text-xs font-semibold text-luma-lavender-800 hover:text-luma-lavender-950 transition-colors flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-500 rounded"
+          >
+            <span>Back to top</span>
+            <span aria-hidden="true">↑</span>
+          </a>
         </div>
 
-        {/* Discreet Wellness Safety Disclaimer */}
-        <div className="text-[11px] text-luma-lavender-400/70 max-w-4xl">
-          <p className="mb-1 font-semibold text-luma-lavender-300/90">Wellness Disclaimer:</p>
-          <p>{CONTACT_CONFIG.disclaimer}</p>
-          <p className="mt-4 text-luma-lavender-500">
-            © {new Date().getFullYear()} {CONTACT_CONFIG.brandName}. All rights reserved. Prototype edition.
+        {/* Detailed Grounded Wellness Disclaimer */}
+        <div className="mt-8 text-[11px] text-luma-lavender-600/90 max-w-4xl space-y-2">
+          <p className="font-semibold text-luma-lavender-800">
+            Wellness Practice Disclaimer:
+          </p>
+          <p className="leading-relaxed">
+            {CONTACT_CONFIG.disclaimer}
+          </p>
+          <p className="text-[10px] text-luma-lavender-500 pt-2">
+            © {new Date().getFullYear()} {CONTACT_CONFIG.brandName}. All concepts and research notes are strictly confidential preview material.
           </p>
         </div>
       </div>

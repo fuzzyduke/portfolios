@@ -1,70 +1,85 @@
 import React from 'react';
-import { Sparkles, Heart, ArrowDown, MessageCircle } from 'lucide-react';
 import { CONTACT_CONFIG } from '../config/contact';
-import type { EnquiryContext } from '../utils/whatsapp';
 
-interface HeroProps {
-  onConnect: (ctx?: EnquiryContext) => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onConnect }) => {
+export const Hero: React.FC = () => {
   return (
-    <section className="relative pt-12 pb-20 md:pt-24 md:pb-32 bg-luma-cream-100 overflow-hidden">
-      {/* Signature Visual: Soft Eclipse & Prism Light Portal */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[550px] md:w-[700px] h-[350px] sm:h-[550px] md:h-[700px] pointer-events-none z-0">
-        {/* Layered blurred glowing circles (Eclipse Glow motif) */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-luma-lavender-300/40 via-luma-sage-300/30 to-luma-gold-300/40 blur-3xl animate-pulse-slow" />
-        <div className="absolute inset-12 sm:inset-20 rounded-full bg-gradient-to-br from-luma-gold-400/20 via-luma-cream-50 to-luma-lavender-400/30 blur-2xl animate-float" />
-        <div className="absolute inset-28 sm:inset-36 rounded-full border border-luma-gold-400/30 shadow-[0_0_50px_rgba(217,183,122,0.3)] animate-glow-spin" />
+    <section
+      id="home"
+      aria-label="Hero Introduction"
+      className="relative overflow-hidden min-h-[640px] lg:min-h-[720px] bg-[radial-gradient(ellipse_36%_52%_at_57%_65%,#e9e2ebc0,transparent_82%),linear-gradient(125deg,#fbf9f6_15%,#f7f3ef_80%)] border-b border-[#e9e3e6]"
+    >
+      {/* Decorative Aura Rings */}
+      <div
+        aria-hidden="true"
+        className="absolute -right-32 sm:-right-24 top-12 w-[480px] sm:w-[620px] h-[480px] sm:h-[620px] rounded-full border border-luma-lavender-400/40 shadow-[0_0_0_60px_#e7e1e94d,0_0_0_135px_#d3dfd02c,0_0_0_200px_#ede5e334] -rotate-12 pointer-events-none"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -left-20 -bottom-24 w-80 h-80 rounded-full bg-[radial-gradient(circle,#d3dfcf6b,transparent_65%)] pointer-events-none"
+      />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 min-h-[600px] lg:min-h-[680px] grid lg:grid-cols-[1.15fr_0.85fr] items-center gap-12 py-16 sm:py-20">
+        {/* Left Column: Visitor-First Copy */}
+        <div className="max-w-2xl">
+          <div className="text-[11px] font-sans font-bold uppercase tracking-[0.24em] text-luma-lavender-700 mb-4 inline-block">
+            {CONTACT_CONFIG.tagline}
+          </div>
+
+          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal text-luma-lavender-950 tracking-tight leading-[1.08] mb-6">
+            A journey <em className="italic font-normal text-luma-lavender-600">back</em> to yourself.
+          </h1>
+
+          <p className="text-base sm:text-lg text-luma-lavender-800/90 leading-relaxed font-sans max-w-xl mb-10">
+            {CONTACT_CONFIG.heroLead}
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="#explore"
+              className="inline-flex items-center justify-center gap-3 bg-luma-lavender-700 hover:bg-luma-lavender-800 text-white font-semibold text-sm px-6 sm:px-7 py-3.5 sm:py-4 rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-500 focus-visible:ring-offset-2"
+            >
+              <span>Take a moment for yourself</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+
+            <a
+              href="#about"
+              className="inline-flex items-center justify-center gap-2 bg-white/80 hover:bg-white text-luma-lavender-800 font-semibold text-sm px-6 py-3.5 sm:py-4 rounded-full border border-luma-lavender-200/80 shadow-2xs hover:shadow-xs transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-500 focus-visible:ring-offset-2"
+            >
+              <span>Meet Reshma</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Right Column: Meditative Visual Halo & Botanical Accent */}
+        <div className="relative flex items-center justify-center h-[380px] sm:h-[460px] lg:h-[540px]" aria-hidden="true">
+          {/* Central Radiant Halo */}
+          <div className="w-[320px] sm:w-[420px] lg:w-[460px] h-[320px] sm:h-[420px] lg:h-[460px] rounded-full relative bg-[radial-gradient(circle_at_54%_47%,#fffff2_0_29%,#f8f4e9_33%,#ebdfeb_43%,#c3d1c16b_53%,#b8a6c45c_62%,transparent_72%)] filter drop-shadow-[0_20px_50px_#bca9bc35] flex items-center justify-center">
+            {/* Concentric Golden Orbit Ring */}
+            <div className="absolute inset-[17%] border border-luma-gold-400/50 rounded-full" />
+
+            {/* Inner Sacred Center Ring */}
+            <div className="absolute inset-[28%] border border-[#bdb29a77] rounded-full flex items-center justify-center text-center">
+              <svg className="w-20 h-20 sm:w-24 sm:h-24 stroke-luma-lavender-500 stroke-1 fill-none opacity-80" viewBox="0 0 100 100">
+                <path d="M50 88V35M50 74C29 72 23 59 24 44c17 1 26 11 26 30M50 61c24-2 28-17 27-32-20 1-27 14-27 32M50 45c-15-6-17-19-12-32 13 7 16 18 12 32M50 45c15-6 17-19 12-32-13 7-16 18-12 32" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Botanical Foliage Motif */}
+          <svg className="absolute right-0 sm:right-4 bottom-0 w-36 sm:w-48 lg:w-52 h-44 sm:h-60 opacity-60 pointer-events-none" viewBox="0 0 180 250">
+            <path d="M80 250Q85 100 140 10M78 210Q32 180 20 110M95 150Q140 132 155 95" stroke="#829f86" fill="none" strokeWidth="2" />
+            <ellipse cx="39" cy="147" rx="18" ry="33" transform="rotate(-50 39 147)" fill="#a7b8a1aa" />
+            <ellipse cx="121" cy="92" rx="17" ry="36" transform="rotate(34 121 92)" fill="#a7b8a1aa" />
+            <ellipse cx="139" cy="48" rx="14" ry="29" transform="rotate(20 139 48)" fill="#a7b8a1aa" />
+          </svg>
+        </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-        {/* Brand Tagline Badge */}
-        <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-luma-lavender-200/80 text-luma-lavender-900 text-xs font-medium px-4 py-1.5 rounded-full mb-8 shadow-2xs">
-          <Sparkles className="w-3.5 h-3.5 text-luma-gold-500" />
-          <span>{CONTACT_CONFIG.brandName}</span>
-        </div>
-
-        {/* Primary Line */}
-        <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-normal text-luma-lavender-900 leading-tight tracking-tight mb-6 max-w-3xl mx-auto">
-          A gentle space for <span className="italic font-normal text-luma-lavender-700">Reiki</span>, energy healing and restorative wellbeing.
-        </h1>
-
-        {/* Secondary Supporting Line */}
-        <p className="text-base sm:text-lg text-luma-sage-700 font-medium uppercase tracking-widest mb-8">
-          {CONTACT_CONFIG.subTagline}
-        </p>
-
-        {/* Narrative Intro */}
-        <p className="text-sm sm:text-base text-luma-lavender-800 font-normal leading-relaxed max-w-xl mx-auto mb-10">
-          Pause the rush. Step into an inviting, quiet sanctuary designed to ground your thoughts, harmonize your personal energy, and create space for deep reflection.
-        </p>
-
-        {/* Primary CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#services"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-luma-lavender-800 hover:bg-luma-lavender-900 text-luma-cream-50 text-sm font-semibold px-8 py-4 rounded-full shadow-sm hover:shadow transition-all transform hover:-translate-y-0.5"
-          >
-            <span>Explore Sessions</span>
-            <ArrowDown className="w-4 h-4 text-luma-gold-400" />
-          </a>
-
-          <button
-            onClick={() => onConnect('general')}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white hover:bg-luma-cream-50 text-luma-lavender-900 border border-luma-lavender-300/80 text-sm font-semibold px-8 py-4 rounded-full shadow-2xs hover:shadow-xs transition-all cursor-pointer"
-          >
-            <MessageCircle className="w-4 h-4 text-whatsapp-500" />
-            <span>Talk to Reshma</span>
-          </button>
-        </div>
-
-        {/* Subtle Decorative Element */}
-        <div className="mt-16 pt-8 flex items-center justify-center gap-4 text-luma-lavender-500/60 text-xs">
-          <span className="w-12 h-px bg-luma-lavender-300/40" />
-          <Heart className="w-3.5 h-3.5 text-luma-gold-400 fill-luma-gold-400/20" />
-          <span className="w-12 h-px bg-luma-lavender-300/40" />
-        </div>
+      {/* Subtle Scroll Hint */}
+      <div className="hidden sm:block absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.25em] font-sans font-semibold uppercase text-luma-lavender-500/80">
+        Scroll to explore ↓
       </div>
     </section>
   );

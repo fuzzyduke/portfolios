@@ -1,35 +1,59 @@
+import { DemoBanner } from './components/DemoBanner';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { WhatIsLuma } from './components/WhatIsLuma';
-import { Services } from './components/Services';
-import { WhoIsThisFor } from './components/WhoIsThisFor';
-import { SessionExperience } from './components/SessionExperience';
+import { SelfReflection } from './components/SelfReflection';
 import { AboutReshma } from './components/AboutReshma';
-import { HowItWorks } from './components/HowItWorks';
-import { ContactSection } from './components/ContactSection';
-import { StickyMobileCTA } from './components/StickyMobileCTA';
+import { Services } from './components/Services';
+import { WhatToExpect } from './components/WhatToExpect';
+import { Reflections } from './components/Reflections';
+import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
-import { WhatsAppModal, useWhatsAppAction } from './components/WhatsAppModal';
+import { WhatsAppModal } from './components/WhatsAppModal';
+import { StickyMobileCTA } from './components/StickyMobileCTA';
+import { useWhatsAppAction } from './hooks/useWhatsAppAction';
 
 export function App() {
   const { triggerWhatsApp, modalContext, closeModal } = useWhatsAppAction();
 
   return (
-    <div className="min-h-screen bg-luma-cream-100 text-luma-lavender-900 font-sans antialiased selection:bg-luma-lavender-200 selection:text-luma-lavender-900">
+    <div className="min-h-screen bg-[#f8f6f1] text-[#373342] font-sans antialiased selection:bg-luma-lavender-200 selection:text-luma-lavender-900">
+      {/* Top Prototype Context Banner */}
+      <DemoBanner />
+
+      {/* Navigation Header */}
       <Header onConnect={triggerWhatsApp} />
-      <main>
-        <Hero onConnect={triggerWhatsApp} />
-        <WhatIsLuma />
+
+      {/* Main Journey-First Content */}
+      <main id="main-content">
+        {/* 1. Hero: Empathetic, Visitor-Centric Hook */}
+        <Hero />
+
+        {/* 2. Self-Reflection: Interactive Pause & Inquiry */}
+        <SelfReflection />
+
+        {/* 3. Meet Reshma: Human Guide & Authentic Story Placeholder */}
+        <AboutReshma />
+
+        {/* 4. Sessions: Verified Offerings (Reiki, Akashic Records) */}
         <Services onSelectService={triggerWhatsApp} />
-        <WhoIsThisFor onAction={triggerWhatsApp} />
-        <SessionExperience />
-        <AboutReshma onConnect={triggerWhatsApp} />
-        <HowItWorks onAction={triggerWhatsApp} />
-        <ContactSection onConnect={triggerWhatsApp} />
+
+        {/* 5. What To Expect: Gentle Step-by-Step Experience Guide */}
+        <WhatToExpect />
+
+        {/* 6. Reflections: Instagram-Grounded Introspective Invitations */}
+        <Reflections />
+
+        {/* 7. Final Invitation / Conversational CTA */}
+        <FinalCTA onConnect={triggerWhatsApp} />
       </main>
+
+      {/* Footer & Grounded Wellness Disclaimer */}
       <Footer />
+
+      {/* Persistent Mobile Action Bar */}
       <StickyMobileCTA onConnect={triggerWhatsApp} />
 
+      {/* Contextual Prototype Dialog */}
       <WhatsAppModal
         isOpen={modalContext !== null}
         onClose={closeModal}

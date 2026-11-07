@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Check, Copy, ExternalLink, X, Sparkles } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { X, Sparkles } from 'lucide-react';
 import { CONTACT_CONFIG } from '../config/contact';
 import { getWhatsAppLink, getWhatsAppMessage } from '../utils/whatsapp';
 import type { EnquiryContext } from '../utils/whatsapp';
@@ -11,97 +11,102 @@ interface WhatsAppModalProps {
 }
 
 export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, context }) => {
-  const [copied, setCopied] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // Handle Escape key
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    // Lock body scroll
+    document.body.style.overflow = 'hidden';
+    // Focus close button for accessibility
+    closeButtonRef.current?.focus();
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const messageText = getWhatsAppMessage(context);
   const waUrl = getWhatsAppLink(context);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(messageText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-luma-lavender-900/40 backdrop-blur-sm">
-      <div className="bg-luma-cream-50 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-luma-lavender-200">
+    <div
+      role="presentation"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#27202eb3] backdrop-blur-xs animate-in fade-in duration-200"
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialogTitle"
+        aria-describedby="dialogDesc"
+        className="w-full max-w-[490px] bg-[#fffefa] rounded-3xl p-7 sm:p-9 shadow-2xl relative border border-luma-lavender-200"
+      >
         <button
+          ref={closeButtonRef}
           onClick={onClose}
-          className="absolute top-5 right-5 p-1.5 text-luma-lavender-600 hover:text-luma-lavender-900 rounded-full hover:bg-luma-lavender-100 transition-colors"
+          aria-label="Close dialog"
+          className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#f0e9f0] hover:bg-[#e4d8e4] text-luma-lavender-800 flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-500"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="w-12 h-12 rounded-2xl bg-luma-lavender-100 text-luma-lavender-700 flex items-center justify-center mb-4 border border-luma-lavender-200 shadow-xs">
+        <div className="w-12 h-12 rounded-2xl bg-luma-lavender-100/80 text-luma-lavender-700 flex items-center justify-center mb-4 border border-luma-lavender-200">
           <Sparkles className="w-6 h-6 text-luma-gold-500" />
         </div>
 
-        <h3 className="font-serif text-2xl font-semibold text-luma-lavender-900 mb-1">
-          Connect with {CONTACT_CONFIG.practitionerName}
-        </h3>
-        <p className="text-xs text-luma-lavender-700 bg-luma-lavender-100/70 px-3 py-1 rounded-full mb-5 inline-block font-medium border border-luma-lavender-200">
-          Prototype Mode: Direct WhatsApp link prepared
-        </p>
-
-        <div className="mb-6">
-          <label className="text-xs font-semibold text-luma-lavender-700 uppercase tracking-wider block mb-2">
-            Contextual Inquiry Message:
-          </label>
-          <div className="p-4 bg-white border border-luma-lavender-200 rounded-2xl text-luma-lavender-900 text-sm font-medium leading-relaxed italic shadow-2xs">
-            "{messageText}"
-          </div>
+        <div className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-luma-lavender-700 mb-1">
+          Prototype Interaction
         </div>
 
-        <div className="flex flex-col gap-3">
+        <h2 id="dialogTitle" className="font-serif text-2xl sm:text-3xl font-normal text-luma-lavender-950 mb-3">
+          A real conversation, soon.
+        </h2>
+
+        <p id="dialogDesc" className="text-sm text-luma-lavender-800 leading-relaxed font-sans mb-6">
+          This is a design preview for {CONTACT_CONFIG.practitionerName}'s updated website. Official contact details, session options, and booking availability are currently being confirmed, so this button does not send a live inquiry or make a reservation.
+        </p>
+
+        <div className="mb-6 p-4 bg-[#fbf9f6] border border-luma-lavender-200/80 rounded-2xl text-xs sm:text-sm text-luma-lavender-900 leading-relaxed italic">
+          <span className="block not-italic font-semibold text-[10px] uppercase tracking-wider text-luma-lavender-600 mb-1">
+            Prepared contextual message:
+          </span>
+          "{messageText}"
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex-1 inline-flex items-center justify-center bg-luma-lavender-700 hover:bg-luma-lavender-800 text-white font-semibold text-sm py-3 px-6 rounded-full shadow-sm hover:shadow transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-500"
+          >
+            Understood
+          </button>
+
+          {/* Test Link for Reviewers */}
           <a
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2.5 w-full bg-luma-lavender-700 hover:bg-luma-lavender-800 text-white font-semibold text-sm py-3.5 px-5 rounded-2xl shadow-sm transition-all"
+            className="inline-flex items-center justify-center text-xs text-luma-lavender-600 hover:text-luma-lavender-900 underline py-2 px-3 text-center"
           >
-            <span>Open WhatsApp</span>
-            <ExternalLink className="w-4 h-4" />
+            Preview Deep Link
           </a>
-
-          <button
-            onClick={handleCopy}
-            className="flex items-center justify-center gap-2 w-full bg-white hover:bg-luma-cream-100 text-luma-lavender-800 font-semibold text-sm py-3 px-5 rounded-2xl border border-luma-lavender-200 transition-colors"
-          >
-            {copied ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span className="text-emerald-700 font-semibold">Message Copied!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4 text-luma-lavender-500" />
-                <span>Copy Message Text</span>
-              </>
-            )}
-          </button>
         </div>
       </div>
     </div>
   );
-};
-
-export const useWhatsAppAction = () => {
-  const [modalContext, setModalContext] = useState<EnquiryContext | null>(null);
-
-  const triggerWhatsApp = (context: EnquiryContext = 'general') => {
-    if (CONTACT_CONFIG.isDemoNumber) {
-      setModalContext(context);
-    } else {
-      window.open(getWhatsAppLink(context), '_blank');
-    }
-  };
-
-  const closeModal = () => setModalContext(null);
-
-  return {
-    triggerWhatsApp,
-    modalContext,
-    closeModal,
-  };
 };
