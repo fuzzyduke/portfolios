@@ -11,13 +11,15 @@ interface WhatsAppModalProps {
 export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, context }) => {
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle');
 
   useEffect(() => {
     if (!isOpen) return;
 
     // Capture the previously focused element to restore on close
-    const previouslyFocusedElement = document.activeElement as HTMLElement | null;
+    const previouslyFocused = (document.activeElement && document.activeElement !== document.body)
+      ? (document.activeElement as HTMLElement)
+      : null;
 
     // Save previous body styles
     const originalOverflow = document.body.style.overflow;
@@ -29,9 +31,12 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
       document.body.style.paddingRight = `${scrollBarWidth}px`;
     }
 
-    // Set aria-hidden on other root sibling elements for accessibility
-    const rootContainer = document.getElementById('root');
-    const prevAriaHidden = rootContainer?.getAttribute('aria-hidden');
+    // Set inert on background root elements outside this modal container
+    const appRoot = document.getElementById('app-shell');
+    if (appRoot) {
+      appRoot.setAttribute('inert', '');
+      appRoot.setAttribute('aria-hidden', 'true');
+    }
 
     // Focus close button initially
     const focusTimer = setTimeout(() => {
@@ -76,16 +81,23 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = originalOverflow;
       document.body.style.paddingRight = originalPaddingRight;
-      if (prevAriaHidden) {
-        rootContainer?.setAttribute('aria-hidden', prevAriaHidden);
-      } else {
-        rootContainer?.removeAttribute('aria-hidden');
+
+      if (appRoot) {
+        appRoot.removeAttribute('inert');
+        appRoot.removeAttribute('aria-hidden');
       }
 
-      // Restore focus to initiating element
-      if (previouslyFocusedElement && typeof previouslyFocusedElement.focus === 'function') {
-        previouslyFocusedElement.focus();
-      }
+      // Restore focus: if the previously focused element was unmounted (e.g. mobile drawer), fallback to mobile menu toggle
+      setTimeout(() => {
+        if (previouslyFocused && document.body.contains(previouslyFocused) && typeof previouslyFocused.focus === 'function') {
+          previouslyFocused.focus();
+        } else {
+          const fallbackToggle = document.getElementById('mobile-menu-toggle') || document.querySelector('header a');
+          if (fallbackToggle && typeof (fallbackToggle as HTMLElement).focus === 'function') {
+            (fallbackToggle as HTMLElement).focus();
+          }
+        }
+      }, 0);
     };
   }, [isOpen, onClose]);
 
@@ -93,10 +105,18 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
 
   const messageText = getWhatsAppMessage(context);
 
-  const handleCopyMessage = () => {
-    navigator.clipboard.writeText(messageText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopyMessage = async () => {
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) {
+        throw new Error('Clipboard API not supported');
+      }
+      await navigator.clipboard.writeText(messageText);
+      setCopyStatus('copied');
+      setTimeout(() => setCopyStatus('idle'), 2000);
+    } catch {
+      setCopyStatus('error');
+      setTimeout(() => setCopyStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -105,7 +125,7 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#27202eb3] backdrop-blur-xs overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#27202eb3] backdrop-blur-xs overflow-y-auto"
     >
       <div
         ref={dialogRef}
@@ -113,7 +133,7 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
         aria-modal="true"
         aria-labelledby="dialogTitle"
         aria-describedby="dialogDesc"
-        className="w-full max-w-[490px] my-auto bg-[#fffefa] rounded-3xl p-6 sm:p-9 shadow-2xl relative border border-luma-lavender-300 max-h-[90vh] flex flex-col justify-between overflow-y-auto"
+        className="w-full max-w-[490px] my-auto bg-[#fffefa] rounded-3xl p-5 sm:p-8 md:p-9 shadow-2xl relative border border-luma-lavender-300 max-h-[85vh] sm:max-h-[90vh] flex flex-col justify-between overflow-y-auto"
       >
         <div>
           <button
@@ -121,29 +141,29 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#f0e9f0] hover:bg-[#e4d8e4] text-luma-lavender-900 flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-700 cursor-pointer"
+            className="absolute top-4 sm:top-5 right-4 sm:right-5 w-9 h-9 rounded-full bg-[#f0e9f0] hover:bg-[#e4d8e4] text-luma-lavender-900 flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-700 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
 
-          <div className="w-12 h-12 rounded-2xl bg-luma-lavender-100 text-luma-lavender-800 flex items-center justify-center mb-4 border border-luma-lavender-300">
-            <Sparkles className="w-6 h-6 text-luma-gold-600" />
+          <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-2xl bg-luma-lavender-100 text-luma-lavender-800 flex items-center justify-center mb-3 sm:mb-4 border border-luma-lavender-300">
+            <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-luma-gold-600" />
           </div>
 
-          <div className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-luma-lavender-800 mb-1">
+          <div className="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-luma-lavender-800 mb-1">
             Design Preview Notice
           </div>
 
-          <h2 id="dialogTitle" className="font-serif text-2xl sm:text-3xl font-normal text-luma-lavender-950 mb-3">
+          <h2 id="dialogTitle" className="font-serif text-2xl sm:text-3xl font-normal text-luma-lavender-950 mb-2 sm:mb-3">
             A real conversation, soon.
           </h2>
 
-          <p id="dialogDesc" className="text-sm text-luma-lavender-900 leading-relaxed font-sans mb-5">
+          <p id="dialogDesc" className="text-xs sm:text-sm text-luma-lavender-900 leading-relaxed font-sans mb-4 sm:mb-5">
             This is an isolated design preview. Reshma's verified contact details, session options, and booking availability are currently being confirmed with her.
           </p>
 
-          {/* Safe Demo Notice Banner (C1 Compliance: Zero external navigation) */}
-          <div className="flex items-start gap-2.5 p-3.5 bg-amber-50/90 border border-amber-200/90 rounded-2xl mb-5 text-xs text-amber-950 leading-relaxed">
+          {/* Safe Demo Notice Banner */}
+          <div className="flex items-start gap-2.5 p-3 sm:p-3.5 bg-amber-50/90 border border-amber-200/90 rounded-2xl mb-4 sm:mb-5 text-xs text-amber-950 leading-relaxed">
             <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
             <div>
               <strong className="font-semibold block text-amber-900 mb-0.5">Demo Boundary Active</strong>
@@ -151,8 +171,8 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
             </div>
           </div>
 
-          {/* Contextual Inactive Message Display */}
-          <div className="mb-6 p-4 bg-[#f8f6f1] border border-luma-lavender-300/80 rounded-2xl text-xs sm:text-sm text-luma-lavender-950 leading-relaxed">
+          {/* Contextual Sample Message Display */}
+          <div className="mb-5 sm:mb-6 p-3.5 sm:p-4 bg-[#f8f6f1] border border-luma-lavender-300/80 rounded-2xl text-xs sm:text-sm text-luma-lavender-950 leading-relaxed">
             <span className="block font-semibold text-[11px] uppercase tracking-wider text-luma-lavender-800 mb-1">
               Contextual sample message:
             </span>
@@ -163,11 +183,11 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
         </div>
 
         {/* Modal Actions */}
-        <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-luma-lavender-200/60">
+        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-3 border-t border-luma-lavender-200/60 shrink-0">
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 inline-flex items-center justify-center bg-luma-lavender-800 hover:bg-luma-lavender-900 text-white font-semibold text-sm py-3 px-6 rounded-full shadow-sm hover:shadow transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-700"
+            className="flex-1 inline-flex items-center justify-center bg-luma-lavender-800 hover:bg-luma-lavender-900 text-white font-semibold text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 rounded-full shadow-sm hover:shadow transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-700"
           >
             Understood
           </button>
@@ -175,12 +195,17 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, c
           <button
             type="button"
             onClick={handleCopyMessage}
-            className="inline-flex items-center justify-center gap-2 border border-luma-lavender-300 hover:bg-luma-cream-100 text-luma-lavender-800 font-medium text-xs sm:text-sm py-3 px-5 rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-700"
+            className="inline-flex items-center justify-center gap-2 border border-luma-lavender-300 hover:bg-luma-cream-100 text-luma-lavender-900 font-medium text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-700"
           >
-            {copied ? (
+            {copyStatus === 'copied' ? (
               <>
                 <Check className="w-4 h-4 text-emerald-700" />
                 <span className="text-emerald-800 font-semibold">Copied!</span>
+              </>
+            ) : copyStatus === 'error' ? (
+              <>
+                <AlertCircle className="w-4 h-4 text-rose-600" />
+                <span className="text-rose-700 font-medium">Copy not supported</span>
               </>
             ) : (
               <>
