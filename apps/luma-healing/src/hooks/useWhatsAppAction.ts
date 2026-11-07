@@ -8,9 +8,13 @@ export const useWhatsAppAction = () => {
 
   const triggerWhatsApp = (context: EnquiryContext = 'general') => {
     if (CONTACT_CONFIG.isDemoNumber) {
+      // In demo mode, ALWAYS open the informational modal; never navigate externally
       setModalContext(context);
     } else {
-      window.open(getWhatsAppLink(context), '_blank');
+      const link = getWhatsAppLink(context);
+      if (link) {
+        window.open(link, '_blank');
+      }
     }
   };
 

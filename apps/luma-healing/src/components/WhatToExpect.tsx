@@ -32,7 +32,7 @@ export const WhatToExpect: React.FC = () => {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="max-w-2xl mx-auto text-center mb-16">
-          <span className="text-[11px] font-sans font-bold uppercase tracking-[0.24em] text-luma-lavender-700 block mb-3">
+          <span className="text-[11px] font-sans font-bold uppercase tracking-[0.24em] text-luma-lavender-800 block mb-3">
             A gentle beginning
           </span>
 
@@ -40,7 +40,7 @@ export const WhatToExpect: React.FC = () => {
             What might a first step look like?
           </h2>
 
-          <p className="text-sm sm:text-base text-luma-lavender-700 leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-luma-lavender-900 leading-relaxed font-sans">
             We will replace this outline with Reshma's verified session workflow once confirmed. Here is how a supportive experience typically unfolds:
           </p>
         </div>
@@ -49,17 +49,17 @@ export const WhatToExpect: React.FC = () => {
           {STEPS.map((step) => (
             <div
               key={step.num}
-              className="border-t border-[#cfc5ce] pt-6 flex flex-col justify-between"
+              className="border-t border-[#bfaebb] pt-6 flex flex-col justify-between"
             >
               <div>
-                <b className="font-serif text-3xl sm:text-4xl text-[#b39bbd] font-normal block mb-3">
+                <b className="font-serif text-3xl sm:text-4xl text-luma-lavender-800 font-normal block mb-3">
                   {step.num}
                 </b>
                 <h3 className="font-serif text-xl sm:text-2xl font-normal text-luma-lavender-950 mb-3">
                   {step.title}
                 </h3>
               </div>
-              <p className="text-sm text-luma-lavender-800 leading-relaxed font-sans">
+              <p className="text-sm text-luma-lavender-900 leading-relaxed font-sans">
                 {step.description}
               </p>
             </div>

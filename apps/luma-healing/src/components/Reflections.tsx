@@ -37,7 +37,7 @@ export const Reflections: React.FC = () => {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="max-w-2xl mb-12 sm:mb-16">
-          <span className="text-[11px] font-sans font-bold uppercase tracking-[0.24em] text-luma-lavender-700 block mb-3">
+          <span className="text-[11px] font-sans font-bold uppercase tracking-[0.24em] text-luma-lavender-800 block mb-3">
             Notes for the journey
           </span>
 
@@ -45,7 +45,7 @@ export const Reflections: React.FC = () => {
             Little invitations to look inward.
           </h2>
 
-          <p className="text-sm sm:text-base text-luma-lavender-700 leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-luma-lavender-900 leading-relaxed font-sans">
             Inspired by themes from Reshma's Instagram reflections. Full writing, imagery, and carousel excerpts will be integrated upon verified client approval.
           </p>
         </div>
@@ -55,14 +55,14 @@ export const Reflections: React.FC = () => {
           {REFLECTIONS.map((item, idx) => (
             <article
               key={idx}
-              className="rounded-2xl overflow-hidden bg-[#fffefa] border border-luma-lavender-100 shadow-[0_15px_40px_#56644c0d] flex flex-col justify-between"
+              className="rounded-2xl overflow-hidden bg-[#fffefa] border border-luma-lavender-200 shadow-[0_15px_40px_#56644c0d] flex flex-col justify-between"
             >
               {/* Artistic Header Accent */}
               <div
                 aria-hidden="true"
                 className={`h-48 sm:h-52 ${item.gradientClass} relative flex items-center justify-center`}
               >
-                <span className="font-serif text-7xl text-[#b7a6c5] opacity-60 select-none">
+                <span className="font-serif text-7xl text-luma-lavender-700 opacity-60 select-none">
                   ✧
                 </span>
               </div>
@@ -70,14 +70,14 @@ export const Reflections: React.FC = () => {
               {/* Card Body */}
               <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                 <div>
-                  <small className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-[#947e9c] block mb-2">
+                  <small className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-luma-lavender-800 block mb-2">
                     {item.tag}
                   </small>
                   <h3 className="font-serif text-xl sm:text-2xl font-normal text-luma-lavender-950 mb-3 leading-snug">
                     {item.headline}
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-luma-lavender-700 leading-relaxed font-sans mt-2">
+                <p className="text-xs sm:text-sm text-luma-lavender-900 leading-relaxed font-sans mt-2">
                   {item.copy}
                 </p>
               </div>

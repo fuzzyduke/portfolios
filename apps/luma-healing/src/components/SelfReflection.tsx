@@ -41,7 +41,7 @@ export const SelfReflection: React.FC = () => {
       className="py-20 sm:py-28 bg-[#f8f6f1] border-b border-[#e9e3e6]"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <span className="text-[11px] font-sans font-bold uppercase tracking-[0.24em] text-luma-lavender-700 block mb-3">
+        <span className="text-[11px] font-sans font-bold uppercase tracking-[0.24em] text-luma-lavender-800 block mb-3">
           Start where you are
         </span>
 
@@ -49,8 +49,8 @@ export const SelfReflection: React.FC = () => {
           What's been on your mind lately?
         </h2>
 
-        <p className="text-sm sm:text-base text-luma-lavender-700 max-w-xl mx-auto leading-relaxed mb-10">
-          There isn't a right answer. Choose a thought that resonates right now, and take a small moment to reflect. Nothing is saved or shared.
+        <p className="text-sm sm:text-base text-luma-lavender-900 max-w-xl mx-auto leading-relaxed mb-10">
+          There isn't a right answer. Choose a thought that resonates right now, and take a small moment to reflect. Nothing is saved, tracked, or shared.
         </p>
 
         {/* Reflection Choice Buttons */}
@@ -67,10 +67,10 @@ export const SelfReflection: React.FC = () => {
                 type="button"
                 aria-pressed={isSelected}
                 onClick={() => setSelectedId(choice.id)}
-                className={`text-xs sm:text-sm font-medium py-3 px-5 sm:px-6 rounded-full border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-500 ${
+                className={`text-xs sm:text-sm font-semibold py-3 px-5 sm:px-6 rounded-full border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-700 ${
                   isSelected
-                    ? 'bg-[#e6dce9] border-luma-lavender-500 text-luma-lavender-950 shadow-inner font-semibold'
-                    : 'bg-white/90 border-[#d9ccd9] text-luma-lavender-700 hover:bg-white hover:border-luma-lavender-300 shadow-2xs'
+                    ? 'bg-[#e2d5e6] border-luma-lavender-600 text-luma-lavender-950 shadow-inner font-bold'
+                    : 'bg-white border-[#d2bfd2] text-luma-lavender-900 hover:bg-luma-cream-50 hover:border-luma-lavender-400 shadow-2xs'
                 }`}
               >
                 {choice.label}
@@ -82,15 +82,15 @@ export const SelfReflection: React.FC = () => {
         {/* Live Reflection Card */}
         <div
           aria-live="polite"
-          className="max-w-2xl mx-auto p-6 sm:p-8 rounded-2xl bg-[#fffefa] text-luma-lavender-900 border border-luma-lavender-200/70 shadow-[0_15px_35px_#654e700a] text-sm sm:text-base leading-relaxed italic transition-all min-h-[96px] flex items-center justify-center"
+          className="max-w-2xl mx-auto p-6 sm:p-8 rounded-2xl bg-[#fffefa] text-luma-lavender-950 border border-luma-lavender-300 shadow-[0_15px_35px_#654e700a] text-sm sm:text-base leading-relaxed italic transition-all min-h-[96px] flex items-center justify-center"
         >
-          <span className="block font-serif text-base sm:text-lg text-luma-lavender-800 not-italic">
+          <span className="block font-serif text-base sm:text-lg text-luma-lavender-900 not-italic">
             "{activeChoice.response}"
           </span>
         </div>
 
-        <p className="text-[11px] text-luma-lavender-500 mt-4 tracking-wide font-sans">
-          ✦ Take a breath. This reflection is entirely private and stays only in your browser.
+        <p className="text-[11px] text-luma-lavender-700 mt-4 tracking-wide font-sans font-medium">
+          ✦ Take a breath. This reflection is entirely private and stays only in your browser memory.
         </p>
       </div>
     </section>
