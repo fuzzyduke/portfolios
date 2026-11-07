@@ -19,6 +19,7 @@ export default {
             700: '#75588C',
             800: '#563D69',
             900: '#342244',
+            950: '#261733',
           },
           sage: {
             50: '#F7F9F6',
@@ -41,7 +42,7 @@ export default {
           },
           cream: {
             50: '#FDFCF9',
-            100: '#F6F3EE', // Signature cream / off-white
+            100: '#F8F6F1', // V2 cream / off-white
             200: '#ECE6DB',
             300: '#DFD6C5',
           },
@@ -53,13 +54,12 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['Playfair Display', 'Cormorant Garamond', 'Georgia', 'serif'],
-        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['DM Serif Display', 'Playfair Display', 'Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['DM Sans', 'Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float': 'float 8s ease-in-out infinite',
-        'glow-spin': 'spin 20s linear infinite',
       },
       keyframes: {
         float: {

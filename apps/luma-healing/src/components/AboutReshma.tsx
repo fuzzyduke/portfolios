@@ -1,67 +1,80 @@
 import React from 'react';
-import { Heart, Sparkles, MessageCircle } from 'lucide-react';
 import { CONTACT_CONFIG } from '../config/contact';
-import type { EnquiryContext } from '../utils/whatsapp';
 
-interface AboutReshmaProps {
-  onConnect: (ctx?: EnquiryContext) => void;
-}
-
-export const AboutReshma: React.FC<AboutReshmaProps> = ({ onConnect }) => {
+export const AboutReshma: React.FC = () => {
   return (
-    <section id="reshma" className="py-16 md:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="grid md:grid-cols-12 gap-10 items-center">
-          {/* Avatar / Visual Frame */}
-          <div className="md:col-span-5 flex justify-center">
-            <div className="relative">
-              {/* Outer soft glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-luma-lavender-300 via-luma-sage-300 to-luma-gold-300 blur-xl opacity-60 scale-105" />
-              
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-luma-cream-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
-                {/* Visual placeholder for Reshma */}
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 rounded-full bg-luma-lavender-100 text-luma-lavender-700 flex items-center justify-center mx-auto mb-3 border border-luma-lavender-200">
-                    <Sparkles className="w-8 h-8 text-luma-gold-500" />
-                  </div>
-                  <span className="font-serif text-2xl font-semibold text-luma-lavender-900 block">
-                    {CONTACT_CONFIG.practitionerName}
-                  </span>
-                  <span className="text-xs font-sans text-luma-sage-700 uppercase tracking-widest block font-medium mt-1">
-                    Holistic Practitioner
-                  </span>
-                </div>
+    <section
+      id="about"
+      aria-label="Meet Reshma"
+      className="py-20 sm:py-28 bg-[#fffefa] border-b border-[#e9e3e6]"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left: Explicit Portrait Placeholder */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-md bg-[#e9e3ea] rounded-t-[200px] sm:rounded-t-[220px] rounded-b-3xl p-4 sm:p-5 relative shadow-sm">
+              <div
+                role="img"
+                aria-label="Placeholder for approved Reshma portrait"
+                className="h-[380px] sm:h-[460px] rounded-t-[185px] sm:rounded-t-[205px] rounded-b-2xl border-2 border-dashed border-[#b6a1c5] bg-gradient-to-br from-[#faf6f3] to-[#e8e9e2] flex flex-col items-center justify-center p-6 text-center text-luma-lavender-900"
+              >
+                <svg
+                  className="w-16 h-16 sm:w-20 sm:h-20 stroke-luma-lavender-700 stroke-1 fill-none mb-4 opacity-80"
+                  viewBox="0 0 100 100"
+                >
+                  <circle cx="50" cy="31" r="18" />
+                  <path d="M15 95c1-28 15-42 35-42s34 14 35 42" />
+                </svg>
+
+                <strong className="text-xs sm:text-sm font-sans font-bold tracking-[0.14em] uppercase text-luma-lavender-950 block mb-1">
+                  Reshma's Portrait
+                </strong>
+                <small className="text-xs text-luma-lavender-800 block max-w-xs font-medium">
+                  Approved photograph & visual assets to be added upon Reshma's verification
+                </small>
+              </div>
+
+              {/* Floating Badge */}
+              <div className="absolute -bottom-4 right-4 sm:-right-4 bg-[#fffefa] shadow-md border border-luma-lavender-300 rounded-full py-3 px-6 font-serif italic text-base sm:text-lg text-luma-lavender-900">
+                A gentle guide inward
               </div>
             </div>
           </div>
 
-          {/* Bio Copy */}
-          <div className="md:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-luma-cream-100 text-luma-lavender-800 text-xs font-semibold uppercase tracking-wider mb-4 border border-luma-lavender-200/60">
-              <Heart className="w-3.5 h-3.5 text-luma-gold-500" />
-              <span>Meet Your Practitioner</span>
-            </div>
+          {/* Right: Thoughtful Practitioner Introduction */}
+          <div>
+            <span className="text-[11px] font-sans font-bold uppercase tracking-[0.24em] text-luma-lavender-800 block mb-3">
+              The heart behind the space
+            </span>
 
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-luma-lavender-900 mb-6">
-              Welcome to Luma Healing Space
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-luma-lavender-950 tracking-tight leading-tight mb-4">
+              Meet {CONTACT_CONFIG.practitionerName}.
             </h2>
 
-            <div className="space-y-4 text-luma-lavender-800 text-base leading-relaxed font-normal mb-8">
+            <div className="w-16 h-0.5 bg-luma-gold-500 mb-6" />
+
+            <div className="space-y-4 text-sm sm:text-base text-luma-lavender-900 leading-relaxed font-sans">
               <p>
-                {CONTACT_CONFIG.practitionerName} created Luma Healing Space as a calm, personal environment for people who want to pause, reconnect and explore holistic wellbeing practices such as Reiki and energy healing.
+                Behind every thoughtful practice is a person who understands how noisy everyday roles can become. Reshma's writing explores self-awareness, emotional patterns, inner reflection, and the quiet possibility of meeting ourselves with deeper compassion.
               </p>
-              <p className="text-sm text-luma-lavender-700">
-                Whether you are seeking relief from a hectic schedule or simply curious about energy work, sessions are held with warm presence, deep respect, and gentle intentionality.
+              <p>
+                Her verified personal background, training, practice philosophy, and session boundaries will be authored together in her authentic voice. We preserve this space strictly for the genuine details that make her work uniquely hers.
               </p>
             </div>
 
-            <button
-              onClick={() => onConnect('general')}
-              className="inline-flex items-center gap-2.5 bg-luma-lavender-800 hover:bg-luma-lavender-900 text-white font-semibold text-sm px-7 py-3.5 rounded-full shadow-sm transition-colors cursor-pointer"
-            >
-              <MessageCircle className="w-4 h-4 text-luma-gold-400" />
-              <span>Connect with Reshma</span>
-            </button>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href="#sessions"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-luma-cream-50 text-luma-lavender-900 font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-luma-lavender-300 shadow-2xs hover:shadow-xs transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luma-lavender-700"
+              >
+                <span>Explore her practice</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+
+              <span className="text-xs text-luma-lavender-800 italic font-medium">
+                Bio & credentials pending client confirmation
+              </span>
+            </div>
           </div>
         </div>
       </div>
